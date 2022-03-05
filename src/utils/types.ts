@@ -1,3 +1,15 @@
+export type Stock = {
+	symbol: string;
+	name: string;
+	type: string;
+	region: string;
+	marketOpen: string;
+	marketClose: string;
+	timezone: string;
+	currency: string;
+	matchScore: string;
+}
+
 export type StockResult = {
 	'1. symbol': string;
 	'2. name': string;

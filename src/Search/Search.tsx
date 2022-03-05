@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { StockResult } from '../utils/types';
+import { Stock, StockResult } from '../utils/types';
+import { sanitizeProperties } from '../utils/utils';
 
 export const Search: React.FC = ()  => {
-	const [results, setResults] = useState<StockResult[]>( [] );
+	const [results, setResults] = useState<Stock[]>( [] );
 	const [query, setQuery] = useState<string>( '' );
 	
 	useEffect( () => {
@@ -16,7 +17,7 @@ export const Search: React.FC = ()  => {
 			.then( ( response )=>response.json() )
 			.then( ( json )=>{
 				const results = json['bestMatches'].map( ( item: StockResult )=>{
-					return item;
+					return sanitizeProperties( item );
 				} );
 				setResults( results );
 			} )
@@ -32,7 +33,7 @@ export const Search: React.FC = ()  => {
 					value={query}
 					aria-label='Search stocks'
 					onChange={( event )=>setQuery( event.target.value )}
-				/>
+				/> 
 			</div>
 		</div>
 	);
