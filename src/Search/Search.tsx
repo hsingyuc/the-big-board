@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Dropdown } from './Dropdown';
 import { Stock, StockResult } from '../utils/types';
 import { sanitizeProperties } from '../utils/utils';
 
@@ -34,6 +35,9 @@ export const Search: React.FC = ()  => {
 					aria-label='Search stocks'
 					onChange={( event )=>setQuery( event.target.value )}
 				/> 
+				<Dropdown 
+					options={results} 
+				/>
 			</div>
 		</div>
 	);
