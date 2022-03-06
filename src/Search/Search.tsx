@@ -5,9 +5,10 @@ import { debounce, sanitizeProperties } from '../utils/utils';
 
 export type SearchProps = {
 	onSelect: ( selected: Stock ) => void;
+	selected: Stock[];
 }
 
-export const Search: React.FC<SearchProps> = ( {onSelect} )  => {
+export const Search: React.FC<SearchProps> = ( {onSelect, selected} )  => {
 	const [results, setResults] = useState<Stock[]>( [] );
 	const [query, setQuery] = useState<string>( '' );
 	const [isOpen, setIsOpen] = useState<boolean>( false );
@@ -63,6 +64,7 @@ export const Search: React.FC<SearchProps> = ( {onSelect} )  => {
 				{ isOpen && <Dropdown 
 					options={results} 
 					onSelect={onSelect} 
+					selected={selected}
 				/>}
 			</div>
 		</div>
