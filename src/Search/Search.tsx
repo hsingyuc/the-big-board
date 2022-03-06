@@ -5,10 +5,11 @@ import { debounce, sanitizeProperties } from '../utils/utils';
 
 export type SearchProps = {
 	onSelect: ( selected: Stock ) => void;
+	isDisabled?: boolean;
 	selected: Stock[];
 }
 
-export const Search: React.FC<SearchProps> = ( {onSelect, selected} )  => {
+export const Search: React.FC<SearchProps> = ( {onSelect, isDisabled = false, selected} )  => {
 	const [results, setResults] = useState<Stock[]>( [] );
 	const [query, setQuery] = useState<string>( '' );
 	const [isOpen, setIsOpen] = useState<boolean>( false );
@@ -60,12 +61,22 @@ export const Search: React.FC<SearchProps> = ( {onSelect, selected} )  => {
 					value={query}
 					aria-label='Search stocks'
 					onChange={( event )=>setQuery( event.target.value )}
+					disabled={isDisabled}
 				/> 
-				{ isOpen && <Dropdown 
+				{ ( ( query.length !== 0 && isOpen ) && ! isDisabled ) && <Dropdown 
 					options={results} 
 					onSelect={onSelect} 
+					isDisabled={isDisabled}
 					selected={selected}
 				/>}
+			</div>
+
+			<div className='search-container__search-info'>
+				{
+					!isDisabled
+						? 'Enter up to 3 stocks to compare the current stock prices.'
+						: 'You have reached the maximum stock selection.'
+				}
 			</div>
 		</div>
 	);

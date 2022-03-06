@@ -4,12 +4,15 @@ import { Stock } from '../utils/types';
 export type DropdownProps = {
 	options: Stock[];
 	onSelect: ( selected: Stock ) => void;
+	isDisabled?: boolean;
 	selected: Stock[];
 }
 
-export const Dropdown: React.FC<DropdownProps> = ( {options, onSelect, selected} ) =>{
+export const Dropdown: React.FC<DropdownProps> = ( {options, onSelect, isDisabled = false, selected} ) =>{
 	const handleSelect = ( setSelectedStocks:Stock ) => {
-		onSelect( setSelectedStocks );
+		if ( ! isDisabled ) {
+			onSelect( setSelectedStocks );
+		}
 	};
 
 	const selectedHash = useMemo( () => {

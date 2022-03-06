@@ -12,6 +12,7 @@ const App: React.FC = () => {
 			<h2>Stock Comparison</h2>
 			<Search 
 				onSelect={ ( selected ) => setSelectedStocks( [ ...selectedStocks, selected ] ) } 
+				isDisabled={ Object.keys( selectedStocks ).length >= 3 }
 				selected={ selectedStocks }
 			/>
 			<div className='cards-container'>
