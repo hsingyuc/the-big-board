@@ -3,7 +3,11 @@ import { Dropdown } from './Dropdown';
 import { Stock, StockResult } from '../utils/types';
 import { debounce, sanitizeProperties } from '../utils/utils';
 
-export const Search: React.FC = ()  => {
+export type SearchProps = {
+	onSelect: ( selected: Stock ) => void;
+}
+
+export const Search: React.FC<SearchProps> = ( {onSelect} )  => {
 	const [results, setResults] = useState<Stock[]>( [] );
 	const [query, setQuery] = useState<string>( '' );
 	const [isOpen, setIsOpen] = useState<boolean>( false );
@@ -58,6 +62,7 @@ export const Search: React.FC = ()  => {
 				/> 
 				{ isOpen && <Dropdown 
 					options={results} 
+					onSelect={onSelect} 
 				/>}
 			</div>
 		</div>
