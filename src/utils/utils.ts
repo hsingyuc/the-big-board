@@ -17,3 +17,16 @@ export const sanitizeProperties = ( data: { [key: string]: any } ) => {
 	} );
 	return newData;
 };
+
+/**
+ * Returns a new debounced function
+ */
+export const debounce = ( func:( ...args: any[] )=>void, delay = 500 ) => {
+	let timer: ReturnType<typeof setTimeout>;
+	return function( ...args: any[] ) {
+		clearTimeout( timer );
+		timer = setTimeout( () => {
+			func( ...args );
+		}, delay );
+	};
+};

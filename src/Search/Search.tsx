@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Dropdown } from './Dropdown';
 import { Stock, StockResult } from '../utils/types';
-import { sanitizeProperties } from '../utils/utils';
+import { debounce, sanitizeProperties } from '../utils/utils';
 
 export const Search: React.FC = ()  => {
 	const [results, setResults] = useState<Stock[]>( [] );
@@ -11,7 +11,7 @@ export const Search: React.FC = ()  => {
 	
 	useEffect( () => {
 		if ( query.length ) {
-			fetchStocks( query );
+			debouncedFetchStocks( query );
 		}
 	},[query] );
 
@@ -44,6 +44,8 @@ export const Search: React.FC = ()  => {
 			.catch( error=>console.log( `Error in fetch: ${error.message}` ) );
 	};
 	
+	const debouncedFetchStocks = useCallback( debounce( fetchStocks ), [] );
+
 	return ( 
 		<div className='search-container' ref={selectBoxRef}>
 			<div className='search-container__search'>
