@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Search } from './Search/Search';
+import { Card } from './Card/Card';
 import { Stock, StockQuote, StockQuotes } from './utils/types';
 import { sanitizeProperties } from './utils/utils';
 
@@ -42,7 +43,25 @@ const App: React.FC = () => {
 				selected={ selectedStocks }
 			/>
 			<div className='cards-container'>
-				Cards here
+				{ 
+					[0,1,2].map( ( index ) => {
+						const stock = selectedStocks[index]?.symbol;
+
+						if ( ! stock ) {
+							return (
+								<Card key={ index } isEmpty>
+									Pick an additional stock symbol in the search box above to display stock information
+								</Card>
+							);
+						}
+
+						return (
+							<Card key={ index }>
+								<h3>{ selectedStocks[index]?.name }</h3>
+							</Card>
+						); 
+					} )
+				}
 			</div>
 		</div>  
 	);
