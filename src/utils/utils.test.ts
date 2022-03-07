@@ -1,4 +1,4 @@
-import { debounce, sanitizeProperties } from './utils';
+import { debounce, sanitizeProperties, sanitizeDecimal, sanitizePercentage } from './utils';
 /**
  * Test sanitize properties
  */
@@ -35,6 +35,37 @@ describe( 'debounce', () => {
 
 		expect( setTimeout ).toHaveBeenCalledTimes( 2 );
 		expect( mockFunc ).toHaveBeenCalledTimes( 1 );
+	} );
+
+} );
+
+/**
+ * Test sanitization methods
+ */
+describe( 'sanitize methods', () => {
+	test( 'should round down to 2 decimals', () => {
+		const num = sanitizeDecimal( '10.24667' );
+		expect( num ).toBe( 10.25 );
+	} );
+
+	test( 'should add decimal places',() => {
+		const num = sanitizeDecimal( '10' );
+		expect( num ).toBe( 10.00 );
+	} );
+
+	test( 'should remove percent sign',() => {
+		const num = sanitizeDecimal( '23.89%' );
+		expect( num ).toBe( 23.89 );
+	} );
+
+	test( 'should format percentage',() => {
+		const num = sanitizePercentage( '82.1915' );
+		expect( num ).toBe( '82.19%' );
+	} );
+
+	test( 'should remove minus symbol',() => {
+		const num = sanitizePercentage( '-5.2678' );
+		expect( num ).toBe( '5.27%' );
 	} );
 
 } );

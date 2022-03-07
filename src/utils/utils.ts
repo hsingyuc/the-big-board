@@ -30,3 +30,17 @@ export const debounce = ( func:( ...args: any[] )=>void, delay = 500 ) => {
 		}, delay );
 	};
 };
+
+/**
+ * Changes a number to 2 decimal places
+ */
+export const sanitizeDecimal = ( data:string ): number => {
+	return parseFloat( parseFloat( data ).toFixed( 2 ) );
+};
+
+/**
+ * Sanitizes decimal and adds % sign
+ */
+export const sanitizePercentage = ( data:string ) => {
+	return Math.abs( sanitizeDecimal( data ) ) + '%';
+};
