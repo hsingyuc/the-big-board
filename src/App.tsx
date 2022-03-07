@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Search } from './Search/Search';
-import { Stock } from './utils/types';
+import { Stock, StockQuote, StockQuotes } from './utils/types';
+import { sanitizeProperties } from './utils/utils';
 
 const App: React.FC = () => {
 	const [selectedStocks, setSelectedStocks] = useState<Stock[]>( [] );
+	const [stockQuotes, setStockQuotes] = useState<StockQuotes>( {} );
+	
+	useEffect( ()=>{
+		if ( selectedStocks.length ) {
+			fetchQuote();
+		}
+	},[selectedStocks] );
+	
+	const fetchQuote = () => {
+		selectedStocks.forEach( ( selectedStock ) => {
+			const stock = selectedStock.symbol;
+			if ( ! stockQuotes[ stock ] ) {
+				fetch( `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock}&apikey=${process.env.REACT_APP_API_KEY}` )
+					.then( ( response )=>response.json() )
+					.then( ( json )=>{
+						const newStockQuotes = {...stockQuotes};
+						const data = json['Global Quote'];
+						const sanitizedData = sanitizeProperties( data );
+						newStockQuotes[stock] = sanitizedData as StockQuote;
+						setStockQuotes( newStockQuotes );
+					} )
+					.catch( error=>console.log( `Error in fetch: ${error.message}` ) );
+			}
+		} );
+	};
 
 	return (
 		<div className='stocks-container'>
