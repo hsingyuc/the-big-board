@@ -10,6 +10,23 @@ export type Stock = {
 	matchScore: string;
 }
 
+export type StockQuote = {	
+	symbol: string | null;
+	open: string | null;
+	high: string | null;
+	low: string | null;
+	price: string | null;
+	volume: string | null;
+	latestTradingDay: string | null;
+	previousClose: string | null;
+	change: string | null;
+	changePercent: string | null;
+}
+
+export type StockQuotes = {
+	[symbol: string]: StockQuote;
+}
+
 export type StockResult = {
 	'1. symbol': string;
 	'2. name': string;

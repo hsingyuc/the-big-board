@@ -5,6 +5,7 @@ import { Card } from './Card/Card';
 import { Stock, StockQuote, StockQuotes } from './utils/types';
 import { sanitizeProperties } from './utils/utils';
 import { RemoveButton } from './RemoveButton/RemoveButton';
+import { QuoteInfo } from './QuoteInfo/QuoteInfo';
 import { Spinner } from './utils/Spinner';
 
 const App: React.FC = () => {
@@ -68,6 +69,7 @@ const App: React.FC = () => {
 						return (
 							<Card key={ index }>
 								<h3>{ selectedStocks[index]?.name }</h3>
+								{ stockQuotes[stock] && <QuoteInfo quote={ stockQuotes[stock]} /> }
 								<RemoveButton onRemove={() => {
 									setSelectedStocks( selectedStocks.filter( s => s.symbol !== stock ) );
 								}} />
