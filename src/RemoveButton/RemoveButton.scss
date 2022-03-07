@@ -1,0 +1,16 @@
+.remove-button {
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    height: 35px;
+    background: transparent;
+    border: 1px solid #ffffff30;
+    color: #ed3a52;
+    cursor: pointer;
+	transition: .2s background ease-in-out;
+
+	&:hover {
+		background: #ffffff22;
+	}
+}

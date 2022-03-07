@@ -1,0 +1,19 @@
+.card {
+	padding: 30px;
+    flex: 30% 1;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    background: #ffffff12;
+	position: relative;
+
+	&.has-content {
+		padding-bottom: 65px;
+	}
+
+	&.is-empty {
+		justify-content: center;
+		align-items: center;
+	}
+}
