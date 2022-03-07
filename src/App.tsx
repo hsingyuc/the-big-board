@@ -5,6 +5,7 @@ import { Card } from './Card/Card';
 import { Stock, StockQuote, StockQuotes } from './utils/types';
 import { sanitizeProperties } from './utils/utils';
 import { RemoveButton } from './RemoveButton/RemoveButton';
+import { Spinner } from './utils/Spinner';
 
 const App: React.FC = () => {
 	const [selectedStocks, setSelectedStocks] = useState<Stock[]>( [] );
@@ -52,6 +53,14 @@ const App: React.FC = () => {
 							return (
 								<Card key={ index } isEmpty>
 									Pick an additional stock symbol in the search box above to display stock information
+								</Card>
+							);
+						}
+
+						if ( ! stockQuotes[stock] ) {
+							return (
+								<Card key={ index } isEmpty>
+									<Spinner />
 								</Card>
 							);
 						}
