@@ -4,6 +4,7 @@ import { Search } from './Search/Search';
 import { Card } from './Card/Card';
 import { Stock, StockQuote, StockQuotes } from './utils/types';
 import { sanitizeProperties } from './utils/utils';
+import { RemoveButton } from './RemoveButton/RemoveButton';
 
 const App: React.FC = () => {
 	const [selectedStocks, setSelectedStocks] = useState<Stock[]>( [] );
@@ -58,6 +59,9 @@ const App: React.FC = () => {
 						return (
 							<Card key={ index }>
 								<h3>{ selectedStocks[index]?.name }</h3>
+								<RemoveButton onRemove={() => {
+									setSelectedStocks( selectedStocks.filter( s => s.symbol !== stock ) );
+								}} />
 							</Card>
 						); 
 					} )
