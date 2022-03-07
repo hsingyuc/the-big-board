@@ -1,4 +1,5 @@
 import React from 'react';
+import './RemoveButton.scss';
 
 type RemoveButtonProps = {
 	onRemove: () => void;

@@ -1,0 +1,39 @@
+.quote-info {
+	.quote-info__text {
+		margin-bottom: 5px;
+
+		svg {
+			width: 15px;
+			margin-left: 6px;
+			margin-bottom: -1px;
+		}
+
+		&.is-bearish {
+			color: red;
+
+			svg path {
+				fill: red;
+			}
+		} 
+		
+		&.is-bullish {
+			color: green;
+
+			svg path {
+				fill: green;
+			}
+		}
+	}
+
+	.quote-info__stats {
+		.quote-info__text {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+		}
+		.quote-info__label {
+			color: gray;
+		}
+	}
+
+
+}
