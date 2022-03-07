@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Stock } from '../utils/types';
+import './Dropdown.scss';
 
 export type DropdownProps = {
 	options: Stock[];

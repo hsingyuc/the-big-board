@@ -1,0 +1,29 @@
+.options {
+	position: absolute;
+    list-style: none;
+    top: 100%;
+    margin-top: 0;
+    border: 1px gray solid;
+    padding: 0;
+	width: 100%;
+	z-index: 100;
+
+	button {
+		border-style: hidden;
+		width: 100%;
+		cursor: pointer;
+		background: white;
+		padding: 10px;
+		text-align: left;
+		border-top: 1px solid #d0d0e3;
+		transition: background .2s ease-in-out;
+
+		&:hover {
+			background: #4fafca;
+		}
+
+		&:disabled {
+			background: lightgrey;
+		}
+	}
+}

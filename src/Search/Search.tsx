@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Dropdown } from './Dropdown';
 import { Stock, StockResult } from '../utils/types';
 import { debounce, sanitizeProperties } from '../utils/utils';
+import './Search.scss';
 
 export type SearchProps = {
 	onSelect: ( selected: Stock ) => void;
