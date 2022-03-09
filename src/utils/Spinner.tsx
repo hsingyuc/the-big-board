@@ -3,6 +3,6 @@ import './Spinner.scss';
 
 export const Spinner: React.FC = () => {
 	return (
-		<div className='spinner' />
+		<div className='spinner' aria-label='Loading' />
 	);
 };

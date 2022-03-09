@@ -25,13 +25,19 @@ const App: React.FC = () => {
 				fetch( `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock}&apikey=${process.env.REACT_APP_API_KEY}` )
 					.then( ( response )=>response.json() )
 					.then( ( json )=>{
+						if ( ! json['Global Quote'] ) {
+							return;
+						}
+
 						const newStockQuotes = {...stockQuotes};
 						const data = json['Global Quote'];
 						const sanitizedData = sanitizeProperties( data );
 						newStockQuotes[stock] = sanitizedData as StockQuote;
 						setStockQuotes( newStockQuotes );
 					} )
-					.catch( error=>console.log( `Error in fetch: ${error.message}` ) );
+					.catch( ( error: Error )=> {
+						console.log( `Error in fetch: ${error.message}` );
+					} );
 			}
 		} );
 	};
