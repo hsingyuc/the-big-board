@@ -3,6 +3,7 @@ import './App.scss';
 import { Search } from './Search/Search';
 import { Stock} from './utils/types';
 import { StockCards } from './StockCards/StockCards';
+import { StockChart } from './StockChart/StockChart';
 
 const App: React.FC = () => {
 	const [selectedStocks, setSelectedStocks] = useState<Stock[]>( [] );
@@ -20,6 +21,7 @@ const App: React.FC = () => {
 				selectedStocks={ selectedStocks }
 				onRemove={ ( stock: string ) => setSelectedStocks( selectedStocks.filter( s => s.symbol !== stock ) ) }
 			/>
+			<StockChart selectedStocks={ selectedStocks } />
 		</div>  
 	);
 };

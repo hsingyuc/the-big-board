@@ -1,7 +1,7 @@
 .card {
-	padding: 30px;
+    padding: 15px 30px;
     flex: 30% 1;
-    min-height: 300px;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     margin: 10px;
@@ -9,7 +9,7 @@
 	position: relative;
 
 	&.has-content {
-		padding-bottom: 65px;
+		padding-bottom: 50px;
 	}
 
 	&.is-empty {

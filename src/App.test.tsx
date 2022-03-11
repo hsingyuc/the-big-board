@@ -55,6 +55,9 @@ const quoteResult = {
 	}
 };
 
+// Mock the charts since context does not work in charts.js during tests.
+jest.mock( './StockChart/StockChart', () => ( { StockChart: () => 'mocked chart' } ) );
+
 describe( 'App', () => {
 	test( 'should render three empty cards', () => {
 		render( <App /> );

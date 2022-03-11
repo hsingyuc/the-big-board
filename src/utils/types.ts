@@ -38,3 +38,22 @@ export type StockResult = {
 	'8. currency': string;
 	'9. matchScore': string;
 }
+
+export type AnnualEarnings = {
+	'fiscalDateEnding': string;
+	'reportedEPS': string;
+}
+
+export type EpsResult = {
+    'symbol': string;
+    'annualEarnings': AnnualEarnings[];
+}
+
+export type EspDatum = {
+	date: string;
+	value: number;
+}
+
+export type EpsData = {
+	[symbol: string]: EspDatum[]
+}
