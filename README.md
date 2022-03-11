@@ -18,7 +18,7 @@ This app allows searching by company name or symbol and to compare stocks based 
 
 ## Getting started
 
-This repo uses eslint for linting and React testing library for tests.  Husky is used to lint and test before each commit.
+This repo uses eslint for linting and React testing library for tests.  Husky is used to lint and test before each commit and GitHub workflows is used for CI.
 
 ### Environment
 
