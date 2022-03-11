@@ -32,11 +32,11 @@ const stockResults = {
 describe( 'Search', () => {
 	beforeEach( () => {
 		jest.useFakeTimers();
-		jest.spyOn( global, 'fetch' ).mockImplementation( () =>
+		jest.spyOn( global, 'fetch' ).mockImplementation( jest.fn( () =>
 			Promise.resolve( {
 				json: () => Promise.resolve( stockResults )
-			} ) as any
-		);
+			} )
+		) as jest.Mock );
 	} );
 
 	test( 'should render options when query is given', async () => {

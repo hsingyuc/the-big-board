@@ -73,14 +73,13 @@ describe( 'App', () => {
 
 	beforeEach( () => {
 		jest.useFakeTimers();
-		jest.spyOn( global, 'fetch' ).mockImplementation( ( url ) => {
+		jest.spyOn( global, 'fetch' ).mockImplementation( jest.fn( ( url ) => {
 			return Promise.resolve( {
 				json: () => ( url as string ).indexOf( 'SYMBOL_SEARCH' ) >= 0
 					? Promise.resolve( stockResults )
 					: Promise.resolve( quoteResult )
-			} ) as any;
-		}
-		);
+			} );
+		} ) as jest.Mock );
 	} );
 
 	test( 'should be able to query and find options', async () => {
@@ -103,11 +102,11 @@ describe( 'App', () => {
 			jest.advanceTimersByTime( 1000 );
 		} );
 
-		jest.spyOn( global, 'fetch' ).mockImplementation( () => {
+		jest.spyOn( global, 'fetch' ).mockImplementation( jest.fn( () => {
 			return Promise.resolve( {
 				json: () => Promise.resolve( {} )
-			} ) as any;
-		} );
+			} );
+		} ) as jest.Mock ); 
 
 		await act( async() => {
 			fireEvent.click( screen.getByText( /Pfizer/i ) );

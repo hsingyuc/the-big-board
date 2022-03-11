@@ -1,8 +1,8 @@
 /**
  * Updates an object keys to camel case properties
  */
-export const sanitizeProperties = ( data: { [key: string]: any } ) => {
-	const newData: {[key: string]: any } = {};
+export const sanitizeProperties = ( data: { [key: string]: string } ) => {
+	const newData: {[key: string]: string } = {};
 	Object.keys( data ).forEach( key => {
 		const newKey = key.split( ' ' ).map( ( text,i ) => {
 			if ( i === 0 ) {
@@ -21,9 +21,9 @@ export const sanitizeProperties = ( data: { [key: string]: any } ) => {
 /**
  * Returns a new debounced function
  */
-export const debounce = ( func:( ...args: any[] )=>void, delay = 500 ) => {
+export const debounce = ( func:( ...args: string[] )=>void, delay = 500 ) => {
 	let timer: ReturnType<typeof setTimeout>;
-	return function( ...args: any[] ) {
+	return function( ...args: string[] ) {
 		clearTimeout( timer );
 		timer = setTimeout( () => {
 			func( ...args );
