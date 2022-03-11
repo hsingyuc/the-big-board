@@ -1,5 +1,7 @@
 # The big board
 
+![App demo](public/demo_photo.png)
+
 A simple stock comparison application built on React and TypeScript with chart.js for visualization.
 
 This app allows searching by company name or symbol and to compare stocks based on historical EPS data.
